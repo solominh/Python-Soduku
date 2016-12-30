@@ -28,9 +28,13 @@ from sudoku_solver import SudkuSolver, print_result
 
 
 test = test_generator2.generate_test()
-result = SudkuSolver().get_one_solution(test)[0]
-new_test = test_generator.generate_puzzle_from(result)
-
 print_result(test)
+
+result = SudkuSolver().get_one_solution(test)
 print_result(result)
+
+new_test = test_generator.generate_puzzle_from(result)
 print_result(new_test)
+
+
+

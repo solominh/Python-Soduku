@@ -9,10 +9,10 @@ def generate_test(min_cells_filled=27):
     while True:
         solver = SudkuSolver()
         result = solver.get_one_solution(empty_board)
-        if result[1] == 0:
-            try_fill_cells(1)
+        if result:
+            return result
         else:
-            return result[0]
+            try_fill_cells(1)
 
 
 def try_fill_cells(numbers_of_cells_to_fill=27):

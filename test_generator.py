@@ -19,9 +19,9 @@ def generate_puzzle_from(result, removal_try=50):
 def try_remove_position(pos, puzzle):
     new_puzzle = puzzle[:pos] + [0] + puzzle[pos + 1:]  # Remove
     solver = SudkuSolver()
-    solution_count = solver.get_solution_count(new_puzzle)
-    if solution_count == 1:
+    if solver.check_more_than_one_solution(new_puzzle):
+        return puzzle
+    else:
         return new_puzzle
-    return puzzle
 
 

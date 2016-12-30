@@ -32,14 +32,16 @@ class SudkuSolver:
         pass
 
     def get_one_solution(self, puzzle):
-        self._solution_count = 1
-        self._run_backtrack(puzzle)
-        return (self._result, self._solution_count)
-
-    def get_solution_count(self, puzzle):
         self._solution_count = 0
+        self._max_solution = 1
         self._run_backtrack(puzzle)
-        return (self._solution_count)
+        return self._result if self._solution_count > 0 else None
+
+    def check_more_than_one_solution(self, puzzle):
+        self._solution_count = 0
+        self._max_solution = 2
+        self._run_backtrack(puzzle)
+        return self._solution_count > 1
 
     def _run_backtrack(self, puzzle):
         self._row_flag = [[0] * 10 for _ in range(9)]
@@ -66,7 +68,7 @@ class SudkuSolver:
     def _resolve_number_at(self, pos):
         if pos >= 81:
             self._solution_count += 1
-            return self._solution_count > 1  # Exit if find more than 1 solutions
+            return self._solution_count >= self._max_solution
 
         if self._puzzle[pos] > 0:
             success = self._resolve_number_at(pos + 1)
