@@ -2,9 +2,9 @@ import solution1
 import solution2
 
 
-def read_test():
+def read_test(filepath):
     board = ''
-    with open('./test1.txt') as f:
+    with open(filepath) as f:
         for line in f:
             board += line.strip()
     return board
@@ -18,18 +18,11 @@ def write_result(board, filepath):
 
 
 def convert_stringlist_to_intlist(str_list):
-    return list(map(int, str_list))
+    return [int(x) for x in str_list]
+    # return list(map(int, str_list))
 
 
-int_board = convert_stringlist_to_intlist(read_test())
-board = solution1.solve(int_board)
-write_result(board, './result.txt')
 
-from solution_count import SudkuSolver
-
-solver = SudkuSolver()
-solver.get_one_solution(int_board)
-
-
-board2 = solution2.solve(read_test())
-write_result(board2, './result2.txt')
+import testgenerator
+int_board2 = convert_stringlist_to_intlist(read_test('./result2.txt'))
+testgenerator.generate_puzzle_from(int_board2)
