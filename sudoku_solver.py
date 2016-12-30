@@ -6,6 +6,26 @@ def print_result(board):
     print("\n")
 
 
+def position_details(pos):
+    row = pos // 9
+    col = pos % 9
+    block = row // 3 * 3 + col // 3
+    return (row, col, block)
+
+
+def check_cell_valid(pos, value, board):
+    row, col, block = position_details(pos)
+    start_cell_of_block = row // 3 * 3 * 9 + col // 3 * 3
+    for i in range(9):
+        rowi = row * 9 + i
+        coli = col + i * 9
+        blocki = start_cell_of_block + i % 3 + i // 3 * 9
+        if value == board[rowi] or value == board[coli] or value == board[blocki]:
+            return False
+
+    return True
+
+
 class SudkuSolver:
 
     def __init__(self):

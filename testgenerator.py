@@ -1,4 +1,6 @@
+import random
 from random import shuffle
+
 from sudoku_solver import SudkuSolver
 from sudoku_solver import print_result
 
@@ -23,3 +25,5 @@ def try_remove_position(pos, puzzle):
     if solution_count == 1:
         return new_puzzle
     return puzzle
+
+
