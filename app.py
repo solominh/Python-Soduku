@@ -33,8 +33,8 @@ def print_board(board):
 def position_details(pos):
     row = pos // 9
     col = pos % 9
-    region = row // 3 * 3 + col // 3
-    return (row, col, region)
+    block = row // 3 * 3 + col // 3
+    return (row, col, block)
 
 
 def resolve_number_at(pos):
@@ -49,30 +49,30 @@ def resolve_number_at(pos):
         return
 
     for num in range(1, 10):
-        row, col, region = position_details(pos)
-        if not (row_flag[row][num] or col_flag[col][num] or region_flag[region][num]):
+        row, col, block = position_details(pos)
+        if not (row_flag[row][num] or col_flag[col][num] or block_flag[block][num]):
             row_flag[row][num] = 1
             col_flag[col][num] = 1
-            region_flag[region][num] = 1
+            block_flag[block][num] = 1
             board[pos] = num
             resolve_number_at(pos + 1)
             row_flag[row][num] = 0
             col_flag[col][num] = 0
-            region_flag[region][num] = 0
+            block_flag[block][num] = 0
             board[pos] = 0
 
 
 def init_board_flags(board):
     for i, v in enumerate(board):
-        row, col, region = position_details(i)
+        row, col, block = position_details(i)
         row_flag[row][v] = 1
         col_flag[col][v] = 1
-        region_flag[region][v] = 1
+        block_flag[block][v] = 1
 
 
 row_flag = [[0] * 10 for _ in range(9)]
 col_flag = [[0] * 10 for _ in range(9)]
-region_flag = [[0] * 10 for _ in range(9)]
+block_flag = [[0] * 10 for _ in range(9)]
 input_board = read_test()
 board = input_board.copy()
 
