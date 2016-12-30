@@ -5,14 +5,15 @@ empty_board = [0] * 81
 
 
 def generate_test(min_cells_filled=27):
-    try_fill_cells()
+    global empty_board
+    
     while True:
+        empty_board = [0] * 81
+        try_fill_cells(min_cells_filled)
         solver = SudkuSolver()
         result = solver.get_one_solution(empty_board)
         if result:
-            return result
-        else:
-            try_fill_cells(1)
+            return empty_board
 
 
 def try_fill_cells(numbers_of_cells_to_fill=27):
