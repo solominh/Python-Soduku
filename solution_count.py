@@ -5,16 +5,24 @@ class SudkuSolver:
     def __init__(self):
         pass
 
-    def solve(self, puzzle):
+    def get_one_solution(self, puzzle):
+        self._solution_count = 1
+        self._run_backtrack(puzzle)
+        return (self._result,self._solution_count)
+
+    def get_solution_count(self, puzzle):
+        self._solution_count = 0
+        self._run_backtrack(puzzle)
+        return (self._solution_count)
+
+    def _run_backtrack(self, puzzle):
         self._row_flag = [[0] * 10 for _ in range(9)]
         self._col_flag = [[0] * 10 for _ in range(9)]
         self._block_flag = [[0] * 10 for _ in range(9)]
         self._puzzle = puzzle
         self._result = puzzle.copy()
-
         self._init_board_flags(self._puzzle)
         self._resolve_number_at(0)
-        return self._result
 
     def _position_details(self, pos):
         row = pos // 9
@@ -38,7 +46,8 @@ class SudkuSolver:
     def _resolve_number_at(self, pos):
         if pos >= 81:
             self._print_board(self._result)
-            return True
+            self._solution_count += 1
+            return self._solution_count > 1  # Exit if find more than 1 solutions
 
         if self._puzzle[pos] > 0:
             success = self._resolve_number_at(pos + 1)

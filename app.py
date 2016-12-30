@@ -27,8 +27,8 @@ write_result(board, './result.txt')
 
 from solution_count import SudkuSolver
 
-solver=SudkuSolver()
-solver.solve(int_board)
+solver = SudkuSolver()
+solver.get_one_solution(int_board)
 
 
 board2 = solution2.solve(read_test())
