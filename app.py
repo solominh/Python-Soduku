@@ -22,9 +22,15 @@ def convert_stringlist_to_intlist(str_list):
     # return list(map(int, str_list))
 
 
-import testgenerator
-# int_board2 = convert_stringlist_to_intlist(read_test('./result2.txt'))
-# testgenerator.generate_puzzle_from(int_board2,)
-
+import test_generator
 import test_generator2
-test_generator2.generate_result()
+from sudoku_solver import SudkuSolver, print_result
+
+
+test = test_generator2.generate_test()
+result = SudkuSolver().get_one_solution(test)[0]
+new_test = test_generator.generate_puzzle_from(result)
+
+print_result(test)
+print_result(result)
+print_result(new_test)

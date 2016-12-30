@@ -65,7 +65,6 @@ class SudkuSolver:
 
     def _resolve_number_at(self, pos):
         if pos >= 81:
-            print_result(self._result)
             self._solution_count += 1
             return self._solution_count > 1  # Exit if find more than 1 solutions
 

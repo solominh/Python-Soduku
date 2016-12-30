@@ -4,7 +4,7 @@ import random
 empty_board = [0] * 81
 
 
-def generate_result(min_cells_filled=27):
+def generate_test(min_cells_filled=27):
     try_fill_cells()
     while True:
         solver = SudkuSolver()
@@ -12,7 +12,6 @@ def generate_result(min_cells_filled=27):
         if result[1] == 0:
             try_fill_cells(1)
         else:
-            print_result(result[0])
             return result[0]
 
 

@@ -6,7 +6,6 @@ from sudoku_solver import print_result
 
 posistion_list = [i for i in range(81)]
 shuffle(posistion_list)
-print(posistion_list)
 
 
 def generate_puzzle_from(result, removal_try=50):
@@ -14,7 +13,6 @@ def generate_puzzle_from(result, removal_try=50):
     for index, pos in enumerate(posistion_list[:removal_try]):
         puzzle = try_remove_position(pos, puzzle)
 
-    print_result(puzzle)
     return puzzle
 
 
