@@ -25,6 +25,11 @@ int_board = convert_stringlist_to_intlist(read_test())
 board = solution1.solve(int_board)
 write_result(board, './result.txt')
 
+from solution_count import SudkuSolver
+
+solver=SudkuSolver()
+solver.solve(int_board)
+
 
 board2 = solution2.solve(read_test())
 write_result(board2, './result2.txt')
