@@ -16,8 +16,11 @@ def read_test():
     return board
 
 
-def write_result():
-    pass
+def write_result(board):
+    with open('./result.txt', 'w') as f:
+        for i in range(9):
+            f.write(str(board[i * 9:i * 9 + 9]))
+            f.write('\n')
 
 
 def print_board(board):
@@ -37,6 +40,7 @@ def position_details(pos):
 def resolve_number_at(pos):
     if pos >= 81:
         print_board(board)
+        write_result(board)
         exit()
         return
 
