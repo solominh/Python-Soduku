@@ -27,6 +27,13 @@ def print_board(board):
     print("\n")
 
 
+def position_details(pos):
+    row = pos // 9
+    col = pos % 9
+    region = row // 3 * 3 + col // 3
+    return (row, col, region)
+
+
 def resolve_number_at(pos):
     if pos >= 81:
         print_board(board)
@@ -37,10 +44,8 @@ def resolve_number_at(pos):
         resolve_number_at(pos + 1)
         return
 
-    for num in range(1,10):
-        row = pos // 9
-        col = pos % 9
-        region = row // 3 * 3 + col // 3
+    for num in range(1, 10):
+        row, col, region = position_details(pos)
         if not (row_flag[row][num] or col_flag[col][num] or region_flag[region][num]):
             row_flag[row][num] = 1
             col_flag[col][num] = 1
@@ -55,10 +60,7 @@ def resolve_number_at(pos):
 
 def init_board_flags(board):
     for i, v in enumerate(board):
-        row = i // 9
-        col = i % 9
-        region = row // 3 * 3 + col // 3
-
+        row, col, region = position_details(i)
         row_flag[row][v] = 1
         col_flag[col][v] = 1
         region_flag[region][v] = 1
