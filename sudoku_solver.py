@@ -1,4 +1,10 @@
 
+def print_result(board):
+    print("Sudoku:\n")
+    for i in range(9):
+        print(board[i * 9:i * 9 + 9])
+    print("\n")
+
 
 class SudkuSolver:
 
@@ -8,7 +14,7 @@ class SudkuSolver:
     def get_one_solution(self, puzzle):
         self._solution_count = 1
         self._run_backtrack(puzzle)
-        return (self._result,self._solution_count)
+        return (self._result, self._solution_count)
 
     def get_solution_count(self, puzzle):
         self._solution_count = 0
@@ -37,15 +43,9 @@ class SudkuSolver:
             self._col_flag[col][v] = 1
             self._block_flag[block][v] = 1
 
-    def _print_board(self, board):
-        print("Sudoku:\n")
-        for i in range(9):
-            print(board[i * 9:i * 9 + 9])
-        print("\n")
-
     def _resolve_number_at(self, pos):
         if pos >= 81:
-            self._print_board(self._result)
+            print_result(self._result)
             self._solution_count += 1
             return self._solution_count > 1  # Exit if find more than 1 solutions
 

@@ -25,4 +25,4 @@ def convert_stringlist_to_intlist(str_list):
 
 import testgenerator
 int_board2 = convert_stringlist_to_intlist(read_test('./result2.txt'))
-testgenerator.generate_puzzle_from(int_board2)
+testgenerator.generate_puzzle_from(int_board2,)
