@@ -56,5 +56,4 @@ def solve(board):
 
     _init_board_flags(output_board)
     _resolve_number_at(0)
-    y = 1
     return output_board
